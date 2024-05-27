@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/homeStyle.css" />
+    <title>Study Help - Home</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="wave-container">
+      <canvas id="canvas"></canvas>
+
+      <div class="TopDiv">
+        <h1>End-to-End Study</h1>
+        <p>We will help you</p>
+        <div class="typing-text-container" id="typingText"></div>
+      </div>
+    </div>
+
+    <div class="helpContainer">
+      <div class="helpRowTitle">
+        <h2>How can we help you ?</h2>
+      </div>
+
+      <div class="helpRow">
+        <div class="helpColumn num1">
+          <div class="animationNum"><span>1</span></div>
+        </div>
+        <div class="helpColumn">
+          <h4>AI School Selector</h4>
+          <p>
+            Ask all your study abroad queries and get them answered by Study<br />
+            Abroad Experts and Top School Alumni, within 24 hours.
+          </p>
+        </div>
+      </div>
+
+      <div class="helpRow">
+        <div class="helpColumn">
+          <h4>Find a Service</h4>
+          <p>
+            Get help! Connect with Banks for loans, find alumni from top<br />
+            schools, Find reliable accommodation, and more. Find any service<br />
+            related to your Study Abroad goals in one place.
+          </p>
+        </div>
+        <div class="helpColumn num2">
+          <div class="animationNum"><span>2</span></div>
+        </div>
+      </div>
+
+      <div class="helpRow">
+        <div class="helpColumn num3">
+          <div class="animationNum"><span>3</span></div>
+        </div>
+        <div class="helpColumn">
+          <h4>Attend Alumni Sessions</h4>
+          <p>
+            Join our live session with alums from the top schools around the<br />
+            globe working at the best organisations and get all your doubts
+            resolved.
+          </p>
+        </div>
+      </div>
+
+      <div class="helpRow">
+        <div class="helpColumn">
+          <h4>Application Dashboard</h4>
+          <p>
+            Build all school applications in one place.Our unique interface<br />
+            allows users to store all their study abroad documents in one
+            place<br />
+            and a checklist to view your application status and tasks.
+          </p>
+        </div>
+        <div class="helpColumn num4">
+          <div class="animationNum"><span>4</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fourthContainer">
+      <div class="fourthLeftBox">
+        <div class="bgBox"></div>
+      </div>
+      <div class="fourthRightBox">
+        <h3>Unsure about your next steps?</h3>
+        <h5>Don’t worry, we’ve got you covered!</h5>
+        <div class="rightTxtBox">
+          <span class="boldTxt">1. Pre-Admission</span>
+          <p>
+            Just beginning your study abroad adventure? We’ll assist you with
+            brainstorming your profile, selecting schools, filling out
+            applications, and preparing for tests.
+          </p>
+        </div>
+        <div class="rightTxtBox">
+          <span class="boldTxt">2. Pre-Departure</span>
+          <p>
+            Great job on reaching this stage! We’ll support you with the next
+            steps by providing top loan offers, visa application assistance, and
+            forex solutions.
+          </p>
+        </div>
+        <div class="rightTxtBox">
+          <span class="boldTxt">3. Post-Admit Assistance</span>
+          <p>
+            Think of us as your digital companion for all things study abroad.
+            We’ll help you with accommodation, connecting with a mentor, and
+            expanding your network by joining our community!
+          </p>
+        </div>
+      </div>
+    </div>
+    <%- include('partials/footer.ejs') -%>
+    <script>
+      const waveContainer = document.querySelector(".wave-container");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const width = waveContainer.offsetWidth;
+      const height = waveContainer.offsetHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      const waves = [];
+
+      function Wave(y, speed, color, amplitude, opacity) {
+        this.y = y;
+        this.speed = speed;
+        this.color = color;
+        this.amplitude = amplitude;
+        this.opacity = opacity;
+        this.x = 0;
+      }
+
+      Wave.prototype.draw = function () {
+        ctx.beginPath();
+        ctx.moveTo(0, this.y);
+        for (let x = 0; x < width; x++) {
+          ctx.lineTo(
+            x,
+            this.y +
+              Math.sin(x * 0.005 + this.x) * this.amplitude * Math.sin(this.x)
+          );
+        }
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        const gradient = ctx.createLinearGradient(0, 0, width, height);
+        gradient.addColorStop(0, "#49A6FD");
+        gradient.addColorStop(0.14, "#49A6FD");
+        gradient.addColorStop(0.9, "#54FFA3");
+        gradient.addColorStop(1, "#54FFA3");
+        ctx.fillStyle = gradient;
+        ctx.globalAlpha = this.opacity;
+        ctx.fill();
+        this.x += this.speed;
+      };
+
+      function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < waves.length; i++) {
+          waves[i].draw();
+        }
+      }
+
+      // Creating waves
+      const wave1 = new Wave(
+        height * 0.5,
+        0.02,
+        "rgba(73, 166, 253, 1)",
+        70,
+        0.3
+      );
+      const wave2 = new Wave(
+        height * 0.3,
+        0.009,
+        "rgba(84, 255, 163, 1)",
+        60,
+        0.5
+      );
+      waves.push(wave1, wave2);
+
+      animate();
+
+      // JavaScript for typing text
+      const sentences = [
+        "Find your dream school",
+        "Get personalized guidance",
+        "Connect with experts",
+        "Secure student loans",
+        "Find accommodations",
+      ];
+      let currentSentenceIndex = 0;
+      let currentCharIndex = 0;
+      const typingTextElement = document.getElementById("typingText");
+
+      function typeSentence() {
+        const currentSentence = sentences[currentSentenceIndex];
+        typingTextElement.textContent = currentSentence.slice(
+          0,
+          currentCharIndex
+        );
+        currentCharIndex++;
+        if (currentCharIndex > currentSentence.length) {
+          setTimeout(() => {
+            currentCharIndex = 0;
+            currentSentenceIndex =
+              (currentSentenceIndex + 1) % sentences.length;
+            typeSentence();
+          }, 2000); // Wait for 2 seconds before typing the next sentence
+        } else {
+          setTimeout(typeSentence, 50); // Adjust typing speed here
+        }
+      }
+
+      typeSentence();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/adminEditUserPageStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Edit User</title>
+  </head>
+  <body>
+    <a href="/adminDashboard-users" class="box"> Go Back </a>
+    <div class="user-details">
+      <% if (user) { %>
+      <div class="userData">
+        <h1 class="title">Edit User</h1>
+
+        <p><span class="blue-txt">Full Name: </span><%= user.fullName %></p>
+        <p><span class="blue-txt">Email: </span><%= user.email %></p>
+        <p>
+          <span class="blue-txt">Admin: </span><%= user.admin ? 'Yes' : 'No' %>
+        </p>
+      </div>
+
+      <div class="table_component" role="region" tabindex="0">
+        <table>
+          <caption class="tableTittle">
+            User Applications
+          </caption>
+          <thead>
+            <tr>
+              <th>University</th>
+              <th>Major</th>
+              <th>Major 2</th>
+              <th>Major 3</th>
+              <th>Language</th>
+              <th>Time</th>
+              <th>Apply</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% user.myApplicationsTable.forEach((application, index) => { %>
+            <tr data-index="<%= index %>">
+              <td><%= application.University %></td>
+              <td><%= application.Major %></td>
+              <td><%= application.Major2 %></td>
+              <td><%= application.Major3 %></td>
+              <td><%= application.Language %></td>
+              <td><%= application.Time %></td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input type="checkbox" data-apply="<%= application.Apply %>"
+                    <%= application.Apply ? 'checked' : '' %> />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <button class="editRowBtn">Edit</button>
+                <button class="saveRowBtn" style="display: none">Save</button>
+              </td>
+              <td>
+                <button class="deleteRowBtn">Delete</button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <div class="addApplicationCointainer">
+          <!-- Add input fields for new row data -->
+          <input type="text" id="universityInput" placeholder="University" />
+          <input type="text" id="majorInput" placeholder="Major" />
+          <input type="text" id="major2Input" placeholder="Major 2" />
+          <input type="text" id="major3Input" placeholder="Major 3" />
+          <input type="text" id="languageInput" placeholder="Language" />
+          <input type="text" id="timeInput" placeholder="Time" />
+          <label for="applyInput">Apply:</label>
+          <input type="checkbox" id="applyInput" />
+
+          <button id="addRowBtn">Add Row</button>
+        </div>
+      </div>
+
+      <div class="table_component" role="region" tabindex="0">
+        <table>
+          <caption class="tableTittle">
+            Progress
+          </caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>University Name</th>
+              <th>State</th>
+              <th>PS</th>
+              <th>CV</th>
+              <th>Passport</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% user.progressTable.forEach((progress, index) => { %>
+            <tr data-index="<%= index %>">
+              <td><%= progress.Name %></td>
+              <td><%= progress.UniversityName %></td>
+              <td>
+                <div class="progressContainer">
+                  <% if (progress.State === 'Completed') { %>
+                  <span class="progressCompleted"
+                    ><i class="fa fa-circle completedDot"></i>Completed</span
+                  >
+                  <% } else { %>
+                  <span class="progressInProgress"
+                    ><i class="fa fa-circle inProgressDot"></i>In Progress</span
+                  >
+                  <% } %>
+                </div>
+              </td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input type="checkbox" data-apply="<%= progress.PS %>" <%=
+                    progress.PS ? 'checked' : '' %> />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input type="checkbox" data-apply="<%= progress.CV %>" <%=
+                    progress.CV ? 'checked' : '' %> />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input type="checkbox" data-apply="<%= progress.Passport %>"
+                    <%= progress.Passport ? 'checked' : '' %> />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <button class="editRowBtnProgress">Edit</button>
+                <button class="saveRowBtnProgress" style="display: none">
+                  Save
+                </button>
+              </td>
+              <td>
+                <button class="deleteRowBtnProgress">Delete</button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <div class="addApplicationCointainer">
+          <!-- Add input fields for new row data -->
+          <input type="text" id="nameInput" placeholder="Name" />
+          <input
+            type="text"
+            id="universityNameInput"
+            placeholder="University Name"
+          />
+          <select id="stateInput">
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <label for="psInput">PS</label>
+          <input type="checkbox" id="psInput" />
+          <label for="cvInput">CV</label>
+          <input type="checkbox" id="cvInput" />
+          <label for="passportInput">Passport</label>
+          <input type="checkbox" id="passportInput" />
+
+          <button id="ProgressAddRowBtn">Add Row</button>
+        </div>
+      </div>
+
+      <% } else { %>
+      <p>User not found.</p>
+      <% } %>
+    </div>
+
+    <script>
+      function getUserIdFromUrl() {
+        const url = window.location.href;
+        const parts = url.split("/");
+        const userIdIndex = parts.indexOf("adminEditUser") + 1;
+        if (userIdIndex !== -1 && parts.length > userIdIndex) {
+          return parts[userIdIndex];
+        } else {
+          return null;
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkboxes = document.querySelectorAll(
+          'input[type="checkbox"][data-apply]'
+        );
+        checkboxes.forEach((checkbox) => {
+          const apply = checkbox.getAttribute("data-apply") === "true";
+          checkbox.checked = apply;
+        });
+
+        const addRowBtn = document.getElementById("addRowBtn");
+        const ProgressAddRowBtn = document.getElementById("ProgressAddRowBtn");
+
+        addRowBtn.addEventListener("click", async () => {
+          try {
+            const university = document.getElementById("universityInput").value;
+            const major = document.getElementById("majorInput").value;
+            const major2 = document.getElementById("major2Input").value;
+            const major3 = document.getElementById("major3Input").value;
+            const language = document.getElementById("languageInput").value;
+            const time = document.getElementById("timeInput").value;
+            const apply = document.getElementById("applyInput").checked;
+
+            const newData = {
+              University: university,
+              Major: major,
+              Major2: major2,
+              Major3: major3,
+              Language: language,
+              Time: time,
+              Apply: apply,
+            };
+
+            const userId = getUserIdFromUrl();
+            const response = await fetch(
+              `http://localhost:3000/user/adminEditUserApplicationTable/${userId}/addRow`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newData),
+              }
+            );
+
+            if (response.ok) {
+              window.location.reload();
+            } else {
+              console.error("Error adding row:", response.statusText);
+            }
+          } catch (error) {
+            console.error("Error adding row:", error.message);
+          }
+        });
+
+        ProgressAddRowBtn.addEventListener("click", async () => {
+          try {
+            const name = document.getElementById("nameInput").value;
+            const universityName = document.getElementById(
+              "universityNameInput"
+            ).value;
+            const state = document.getElementById("stateInput").value;
+            const ps = document.getElementById("psInput").checked;
+            const cv = document.getElementById("cvInput").checked;
+            const passport = document.getElementById("passportInput").checked;
+
+            const newData = {
+              Name: name,
+              UniversityName: universityName,
+              State: state,
+              PS: ps,
+              CV: cv,
+              Passport: passport,
+            };
+
+            const userId = getUserIdFromUrl();
+            const response = await fetch(
+              `http://localhost:3000/user/adminEditUserProgressTable/${userId}/addRow`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newData),
+              }
+            );
+
+            if (response.ok) {
+              window.location.reload();
+            } else {
+              console.error("Error adding row:", response.statusText);
+            }
+          } catch (error) {
+            console.error("Error adding row:", error.message);
+          }
+        });
+
+        const deleteRowBtns = document.querySelectorAll(".deleteRowBtn");
+        deleteRowBtns.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            try {
+              const rowIndex = event.target
+                .closest("tr")
+                .getAttribute("data-index");
+              const userId = getUserIdFromUrl();
+              const response = await fetch(
+                `http://localhost:3000/user/adminEditUserApplicationTable/${userId}/deleteRow`,
+                {
+                  method: "DELETE",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ rowIndex }),
+                }
+              );
+
+              if (response.ok) {
+                window.location.reload();
+              } else {
+                console.error("Error deleting row:", response.statusText);
+              }
+            } catch (error) {
+              console.error("Error deleting row:", error.message);
+            }
+          });
+        });
+
+        const deleteRowBtnProgress = document.querySelectorAll(
+          ".deleteRowBtnProgress"
+        );
+        deleteRowBtnProgress.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            try {
+              const rowIndex = event.target
+                .closest("tr")
+                .getAttribute("data-index");
+              const userId = getUserIdFromUrl();
+              const response = await fetch(
+                `http://localhost:3000/user/adminEditUserProgressTable/${userId}/deleteRow`,
+                {
+                  method: "DELETE",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ rowIndex }),
+                }
+              );
+
+              if (response.ok) {
+                window.location.reload();
+              } else {
+                console.error("Error deleting row:", response.statusText);
+              }
+            } catch (error) {
+              console.error("Error deleting row:", error.message);
+            }
+          });
+        });
+
+        const editRowBtns = document.querySelectorAll(".editRowBtn");
+        const saveRowBtns = document.querySelectorAll(".saveRowBtn");
+        editRowBtns.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            const row = button.closest("tr");
+            row.querySelectorAll("td").forEach((cell, cellIndex) => {
+              if (cellIndex < 7) {
+                // Enable editing for the first 6 columns
+                cell.contentEditable = true;
+                cell.style.backgroundColor = "#cacaca";
+              }
+            });
+            row.querySelector('input[type="checkbox"]').disabled = false;
+            button.style.display = "none";
+            saveRowBtns[index].style.display = "inline-block";
+          });
+        });
+
+        saveRowBtns.forEach((button, index) => {
+          button.addEventListener("click", async () => {
+            const row = button.closest("tr");
+            const cells = row.querySelectorAll("td");
+            const university = cells[0].innerText;
+            const major = cells[1].innerText;
+            const major2 = cells[2].innerText;
+            const major3 = cells[3].innerText;
+            const language = cells[4].innerText;
+            const time = cells[5].innerText;
+            const apply = row.querySelector('input[type="checkbox"]').checked;
+
+            const updatedData = {
+              University: university,
+              Major: major,
+              Major2: major2,
+              Major3: major3,
+              Language: language,
+              Time: time,
+              Apply: apply,
+            };
+
+            const rowIndex = row.getAttribute("data-index");
+            const userId = getUserIdFromUrl();
+            const response = await fetch(
+              `http://localhost:3000/user/adminEditUserApplicationTable/${userId}/updateRow`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ rowIndex, updatedData }),
+              }
+            );
+
+            if (response.ok) {
+              window.location.reload();
+            } else {
+              console.error("Error updating row:", response.statusText);
+            }
+          });
+        });
+
+        const editRowBtnsProgress = document.querySelectorAll(
+          ".editRowBtnProgress"
+        );
+        const saveRowBtnsProgress = document.querySelectorAll(
+          ".saveRowBtnProgress"
+        );
+        editRowBtnsProgress.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            const row = button.closest("tr");
+            row.querySelectorAll("td").forEach((cell, cellIndex) => {
+              if (cellIndex === 2) {
+                // Replace text with a select element for the state
+                const currentState = cell.innerText.trim();
+                cell.innerHTML = `
+                  <select class="stateSelect">
+                    <option value="In Progress" ${
+                      currentState === "In Progress" ? "selected" : ""
+                    }>In Progress</option>
+                    <option value="Completed" ${
+                      currentState === "Completed" ? "selected" : ""
+                    }>Completed</option>
+                  </select>
+                `;
+              } else if (cellIndex < 6) {
+                // Enable editing for the first 6 columns
+                cell.contentEditable = true;
+                cell.style.backgroundColor = "#cacaca";
+              }
+            });
+            row
+              .querySelectorAll('input[type="checkbox"]')
+              .forEach((checkbox) => {
+                checkbox.disabled = false;
+              });
+            button.style.display = "none";
+            saveRowBtnsProgress[index].style.display = "inline-block";
+          });
+        });
+
+        saveRowBtnsProgress.forEach((button, index) => {
+          button.addEventListener("click", async () => {
+            const row = button.closest("tr");
+            const cells = row.querySelectorAll("td");
+            const name = cells[0].innerText;
+            const universityName = cells[1].innerText;
+            const state = row.querySelector(".stateSelect").value;
+            const ps = cells[3].querySelector('input[type="checkbox"]').checked;
+            const cv = cells[4].querySelector('input[type="checkbox"]').checked;
+            const passport = cells[5].querySelector(
+              'input[type="checkbox"]'
+            ).checked;
+
+            const updatedData = {
+              Name: name,
+              UniversityName: universityName,
+              State: state,
+              PS: ps,
+              CV: cv,
+              Passport: passport,
+            };
+
+            const rowIndex = row.getAttribute("data-index");
+            const userId = getUserIdFromUrl();
+            const response = await fetch(
+              `http://localhost:3000/user/adminEditUserProgressTable/${userId}/updateRow`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ rowIndex, updatedData }),
+              }
+            );
+
+            if (response.ok) {
+              window.location.reload();
+            } else {
+              console.error("Error updating row:", response.statusText);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

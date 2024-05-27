@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/profilePageStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Study Help - Profile</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="userContainer">
+      <div class="userProfileImageBox">
+        <img src="/profileImg.png" class="profileImg" alt="" />
+      </div>
+      <div class="userDataBox">
+        <h2><%= user.fullName.toUpperCase() %></h2>
+        <p><span class="dataName">Email:</span> <%= user.email%></p>
+        <a href="#" class="editButton">Edit</a>
+        <% if(user.admin) { %>
+        <a href="/adminDashboard" class="adminEditButton">Admin Dashboard</a>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="tablesContainer">
+      <div class="table_component" role="region" tabindex="0">
+        <table>
+          <caption class="tableTittle">
+            User Applications
+          </caption>
+          <thead>
+            <tr>
+              <th>University</th>
+              <th>Major</th>
+              <th>Major 2</th>
+              <th>Major 3</th>
+              <th>Language</th>
+              <th>Time</th>
+              <th>Apply</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% user.myApplicationsTable.forEach(application => { %>
+            <tr>
+              <td><%= application.University %></td>
+              <td><%= application.Major %></td>
+              <td><%= application.Major2 %></td>
+              <td><%= application.Major3 %></td>
+              <td><%= application.Language %></td>
+              <td><%= application.Time %></td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input
+                      type="checkbox"
+                      data-apply="<%= application.Apply %>"
+                    />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table_component" role="region" tabindex="0">
+        <table>
+          <caption class="tableTittle">
+            Progress
+          </caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>University Name</th>
+              <th>state</th>
+              <th>PS</th>
+              <th>CV</th>
+              <th>Passpot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% user.progressTable.forEach(progress => { %>
+            <tr>
+              <td><%= progress.Name %></td>
+              <td><%= progress.UniversityName %></td>
+              <td>
+                <div class="progressContainer">
+                  <% if (progress.State === 'Completed') { %>
+                  <span class="progressCompleted"
+                    ><i class="fa fa-circle completedDot"></i>Completed</span
+                  >
+                  <% } else { %>
+                  <span class="progressInProgress"
+                    ><i class="fa fa-circle InProgressDot"></i>In Progress</span
+                  >
+                  <% } %>
+                </div>
+              </td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input type="checkbox" data-apply="<%= progress.PS %>" />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input type="checkbox" data-apply="<%= progress.CV %>" />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <div class="checkbox-wrapper-39">
+                  <label>
+                    <input
+                      type="checkbox"
+                      data-apply="<%= progress.Passport %>"
+                    />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table_component" role="region" tabindex="0">
+        <table>
+          <caption class="tableTittle">
+            List
+          </caption>
+          <thead>
+            <tr>
+              <th class="thList">
+                <span class="thListProgressCompleted">
+                  <i class="fa fa-circle completedDot"></i>Completed
+                </span>
+              </th>
+              <th class="thList">
+                <span class="thListProgressInProgress">
+                  <i class="fa fa-circle InProgressDot"></i>In Progress
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% var completedProgress = []; var inProgressProgress = [];
+            user.progressTable.forEach(function(progress) { if (progress.State
+            === 'Completed') { completedProgress.push(progress); } else if
+            (progress.State === 'In Progress') {
+            inProgressProgress.push(progress); } }); var maxLength =
+            Math.max(completedProgress.length, inProgressProgress.length); for
+            (var i = 0; i < maxLength; i++) { %>
+            <tr>
+              <td>
+                <div class="progressContainer">
+                  <% if (i < completedProgress.length) { %>
+                  <p><%= completedProgress[i].Name %></p>
+                  <% } %>
+                </div>
+              </td>
+              <td>
+                <div class="progressContainer">
+                  <% if (i < inProgressProgress.length) { %>
+                  <p><%= inProgressProgress[i].Name %></p>
+                  <% } %>
+                </div>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkboxes = document.querySelectorAll(
+          'input[type="checkbox"][data-apply]'
+        );
+        checkboxes.forEach((checkbox) => {
+          const apply = checkbox.getAttribute("data-apply") === "true";
+          checkbox.checked = apply;
+          checkbox.disabled = true; // Disable the checkbox regardless of its state
+        });
+      });
+    </script>
+  </body>
+</html>

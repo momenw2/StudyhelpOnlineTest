@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Bar</title>
+    <link rel="stylesheet" href="/headerStyle.css" />
+  </head>
+  <body>
+    <header>
+      <ul class="sideBar">
+        <li onclick="hideSidebar()">
+          <a href="#"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="26px"
+              viewBox="0 -960 960 960"
+              width="26px"
+              fill="#4aa8ff"
+            >
+              <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+              />
+            </svg>
+          </a>
+        </li>
+        <li><a href="#">About us</a></li>
+        <li><a href="/countries">Explore universities</a></li>
+        <% if(user) { %>
+        <li><a href="/profilePage">Profile</a></li>
+        <li><a href="user/logout">Logout</a></li>
+        <% } else { %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+        <% } %>
+      </ul>
+      <div class="container">
+        <div class="logo">
+          <a href="/"><img src="logo.png" alt="Logo" /></a>
+        </div>
+        <nav>
+          <ul>
+            <li class="hideOnMobile"><a href="#">About us</a></li>
+            <li class="hideOnMobile">
+              <a href="/countries">Explore universities</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div>
+          <% if(user) { %>
+          <div class="dropdown">
+            <button class="dropbtn hideOnMobile" id="dropdownButton">
+              <%= user.fullName %>
+              <img src="dropBtn.png" alt="" class="dropArrow" />
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+              <a href="/profilePage" class="dropDownLink hideOnMobile"
+                >Profile</a
+              >
+              <a href="user/logout" class="dropDownLink hideOnMobile">Logout</a>
+            </div>
+          </div>
+          <div onclick="showSidebar()" class="menu-button">
+            <a href="#"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="26px"
+                viewBox="0 -960 960 960"
+                width="26px"
+                fill="#4aa8ff"
+              >
+                <path
+                  d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+                />
+              </svg>
+            </a>
+          </div>
+          <% } else { %>
+          <div class="login hideOnMobile">
+            <a href="/login">Login</a>
+          </div>
+          <div onclick="showSidebar()" class="menu-button">
+            <a href="#"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="26px"
+                viewBox="0 -960 960 960"
+                width="26px"
+                fill="#4aa8ff"
+              >
+                <path
+                  d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+                />
+              </svg>
+            </a>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="gtranslate_wrapper"></div>
+      <script>
+        window.gtranslateSettings = {
+          default_language: "en",
+          detect_browser_language: true,
+          languages: ["en", "fr", "de", "it", "es", "zh-CN", "ar"],
+          wrapper_selector: ".gtranslate_wrapper",
+        };
+
+        function saveLanguagePreference(lang) {
+          localStorage.setItem("preferredLanguage", lang);
+        }
+
+        function applyLanguagePreference() {
+          const preferredLanguage = localStorage.getItem("preferredLanguage");
+          if (preferredLanguage) {
+            // Simulate a language change event for the translation widget
+            window.gtranslateSettings.default_language = preferredLanguage;
+            // Directly set the language
+            const event = new Event("change");
+            const selectElement = document.querySelector(
+              ".gtranslate_wrapper select"
+            );
+            if (selectElement) {
+              selectElement.value = preferredLanguage;
+              selectElement.dispatchEvent(event);
+            }
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          applyLanguagePreference();
+
+          const languageSelector = document.querySelector(
+            ".gtranslate_wrapper select"
+          );
+          if (languageSelector) {
+            languageSelector.addEventListener("change", (event) => {
+              const selectedLanguage = event.target.value;
+              saveLanguagePreference(selectedLanguage);
+            });
+          }
+
+          const dropdownButton = document.getElementById("dropdownButton");
+          const myDropdown = document.getElementById("myDropdown");
+
+          dropdownButton.addEventListener("click", () => {
+            myDropdown.classList.toggle("show");
+          });
+
+          window.addEventListener("click", (e) => {
+            if (
+              !e.target.matches("#dropdownButton") &&
+              !e.target.closest(".dropdown")
+            ) {
+              if (myDropdown.classList.contains("show")) {
+                myDropdown.classList.remove("show");
+              }
+            }
+          });
+        });
+
+        function showSidebar() {
+          const sidebar = document.querySelector(".sideBar");
+          sidebar.style.display = "flex";
+        }
+        function hideSidebar() {
+          const sidebar = document.querySelector(".sideBar");
+          sidebar.style.display = "none";
+        }
+      </script>
+      <script
+        src="https://cdn.gtranslate.net/widgets/latest/float.js"
+        defer
+      ></script>
+    </header>
+  </body>
+</html>

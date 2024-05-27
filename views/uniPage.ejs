@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="uniPagestyle.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Study Help - University</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+    <div class="Page">
+      <h1 class="uniName"></h1>
+
+      <h4 class="degreeName"></h4>
+
+      <h5 class="facultyName"></h5>
+      <div class="mainContainer">
+        <p class="subFaculty"></p>
+        <div class="majorContainer"></div>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const uniName = document.querySelector(".uniName");
+        const mainContainer = document.querySelector(".mainContainer");
+
+        fetch("http://localhost:3000/university")
+          .then((response) => response.json())
+          .then((data) => {
+            uniName.innerHTML = `${data[0].uni}`;
+            data[0].Degree.forEach((degree) => {
+              degree.MainFaculty.forEach((mainFaculty) => {
+                const facultyName = document.createElement("h3");
+                facultyName.classList.add("facultyName");
+                facultyName.innerHTML = `${mainFaculty.mainFaculty}`;
+                mainContainer.appendChild(facultyName);
+
+                mainFaculty.SubFaculty.forEach((subFaculty) => {
+                  const subFacultyContainer = document.createElement("div");
+                  subFacultyContainer.classList.add("subFaculty");
+                  subFacultyContainer.innerHTML = `<h4>${subFaculty.subfaculty}</h4>`;
+                  mainContainer.appendChild(subFacultyContainer);
+
+                  const majorContainer = document.createElement("div");
+                  majorContainer.classList.add("majorContainer");
+                  subFaculty.Major.forEach((major) => {
+                    const majorLink = document.createElement("a");
+                    majorLink.setAttribute("href", major.URl);
+                    const majorBox = document.createElement("div");
+                    majorBox.classList.add("cardBox");
+                    majorBox.innerHTML = `<div><p>${major.name}</p></div>`;
+                    majorLink.appendChild(majorBox);
+                    majorContainer.appendChild(majorLink);
+                  });
+                  subFacultyContainer.appendChild(majorContainer);
+                });
+              });
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+    </script>
+  </body>
+</html>

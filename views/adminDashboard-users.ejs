@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/adminDashboard-usersStyle.css" />
+    <title>Admin Dashboard - Users</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="search">
+      <div>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter User Email"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="box"></div>
+    <script>
+      const box = document.querySelector(".box");
+      let usersData = [];
+
+      // Fetching users data from the server
+      fetch("/user/users")
+        .then((res) => res.json())
+        .then((data) => {
+          usersData = data;
+          displayUsers(usersData);
+        })
+        .catch((error) => console.error("Error fetching users:", error));
+
+      // Function to display users
+      function displayUsers(users) {
+        box.innerHTML = ""; // Clear previous results
+        users.forEach((user) => {
+          box.innerHTML += `
+            <a href="/user/adminEditUser/${user._id}">
+              <div class="userBox">
+                <p>${user.email}</p>
+              </div>
+            </a>`;
+        });
+      }
+
+      // Event listener for search input
+      const searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener("input", () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredUsers = usersData.filter((user) =>
+          user.email.toLowerCase().includes(searchTerm)
+        );
+        displayUsers(filteredUsers);
+      });
+
+      // JavaScript for search bar animation
+      searchInput.addEventListener("focus", () => {
+        searchInput.parentElement.classList.add("active");
+      });
+
+      searchInput.addEventListener("blur", () => {
+        searchInput.parentElement.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/loginPageStyle.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Study Help - Login</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="firstContainer">
+      <!-- <img src="/logo.png" alt="" /> -->
+      <p>welcome back!</p>
+    </div>
+
+    <div class="formContainer">
+      <form action="submit" id="loginFrom">
+        <div>
+          <div class="email error"></div>
+          <input
+            type="text"
+            placeholder="Your Email"
+            class="emailForm"
+            id="userEmail"
+            name="email"
+            required
+          />
+        </div>
+        <div>
+          <div class="password error"></div>
+          <input
+            type="password"
+            placeholder="Your password"
+            class="passwordForm"
+            id="userPassword"
+            name="password"
+            required
+          />
+        </div>
+        <div>
+          <input type="submit" value="Login" class="loginButton" />
+        </div>
+      </form>
+      <div class="botDiv">
+        <p>
+          Don't have an account?
+          <a href="/signup" class="blueTxt">Create an account</a>
+        </p>
+        <p><a href="#" class="blueTxt">Reset your password</a></p>
+      </div>
+    </div>
+    <script>
+      const form = document.querySelector("form");
+      const emailError = document.querySelector(".email.error");
+      const passwordError = document.querySelector(".password.error");
+      const url = "http://localhost:3000/user/login";
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        //Reset errors
+        emailError.textContent = "";
+        passwordError.textContent = "";
+
+        //Get the values
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+          const res = await fetch(url, {
+            method: "POST",
+            credentials: "include", // Include cookies in the request
+            body: JSON.stringify({ email, password }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          console.log(data);
+          if (data.errors) {
+            emailError.textContent = data.errors.email;
+            passwordError.textContent = data.errors.password;
+          }
+          if (data.user) {
+            location.assign("/");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+  </body>
+</html>

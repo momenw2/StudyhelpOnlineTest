@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nova+Square&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: #ffffff;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.uniName,
+.degreeName,
+.facultyName {
+  text-align: center;
+}
+
+.facultyName {
+  margin-left: 40px;
+  font-size: 30px;
+  color: #4aa8ff;
+}
+
+.mainContainer {
+  margin-left: 40px;
+}
+
+.subFaculty {
+  margin-top: 20px;
+}
+
+.majorContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three majors in each row */
+  grid-gap: 20px;
+}
+
+.cardBox {
+  border: 1px solid #4aa8ff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.majorContainer a {
+  text-decoration: none;
+  color: black;
+  border-radius: 20px;
+  background: none;
+}
+
+.majorContainer a:hover {
+  background-color: #4aa8ff;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 20px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nova+Square&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: #ffffff;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.uniName,
+.degreeName,
+.facultyName {
+  text-align: center;
+}
+
+.facultyName {
+  margin-left: 40px;
+  font-size: 30px;
+  color: #4aa8ff;
+}
+
+.mainContainer {
+  margin-left: 40px;
+}
+
+.subFaculty {
+  margin-top: 20px;
+}
+
+.majorContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three majors in each row */
+  grid-gap: 20px;
+}
+
+.cardBox {
+  border: 1px solid #4aa8ff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.majorContainer a {
+  text-decoration: none;
+  color: black;
+  border-radius: 20px;
+  background: none;
+}
+
+.majorContainer a:hover {
+  background-color: #4aa8ff;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 20px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .mainContainer {
+    margin-left: 20px; /* Adjust margin for smaller screens */
+    padding: 10px;
+  }
+
+  .facultyName {
+    margin-left: 0; /* Remove left margin on smaller screens */
+    font-size: 24px; /* Adjust font size for smaller screens */
+  }
+
+  .majorContainer {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 10px; /* Space between elements */
+  }
+
+  .cardBox {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+}

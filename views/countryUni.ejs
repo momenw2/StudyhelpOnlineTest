@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/countryUnistyle.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Study Help - University Listing</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="mainContainer">
+      <div class="cardContainer">
+        <a href="/uni">
+          <div class="cardBox">
+            <div class="logoBox">
+              <img
+                src="/UniversityofHongKongLogo.png"
+                alt="University Logo"
+                class="uniLogo"
+              />
+            </div>
+            <div class="txtbox">
+              <h4 class="uniName">University of Hong Kong</h4>
+            </div>
+            <div class="rankBox">
+              <p class="uniRank">QS ~ 26</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

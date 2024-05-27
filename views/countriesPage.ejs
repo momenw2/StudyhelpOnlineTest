@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/countriesStyle.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Study Help - Countries</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="title">
+      <h1>Explore Colleges by Country</h1>
+    </div>
+
+    <div class="cardsContainer">
+      <div class="cardBox">
+        <a href="/countryUniPage">
+          <div class="card">
+            <div class="bg-box">
+              <div class="card-bg">
+                <img src="china.png" alt="" class="bg-image" />
+              </div>
+            </div>
+            <div class="cardtxt">
+              <h4>China</h4>
+              <p>1 University</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

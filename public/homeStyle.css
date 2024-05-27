@@ -1,0 +1,373 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nova+Square&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: #ffffff;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+.wave-container {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.TopDiv {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 60px;
+}
+
+.TopDiv h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 80px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.TopDiv p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.TopDiv a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  margin-top: 40px;
+  background-color: #d1d1d1;
+  width: 210px;
+  height: 40px;
+  text-align: center;
+  border-radius: 20px;
+  padding-top: 18px;
+}
+
+.TopDiv a:hover {
+  background-color: #000000;
+  color: #d1d1d1;
+}
+
+.helpContainer {
+  background: linear-gradient(
+    180deg,
+    rgba(230, 243, 255, 1) 35%,
+    rgba(216, 249, 231, 1) 98%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.helpRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.helpRowTitle h2 {
+  font-size: 50px;
+  text-align: center;
+  color: #004281;
+  margin: 40px 0;
+}
+
+.helpColumn {
+  flex: 1;
+  text-align: left;
+}
+
+.helpColumn h4 {
+  color: #4aa8ff;
+  font-size: 30px;
+}
+
+.helpColumn p {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.num1,
+.num2,
+.num3,
+.num4 {
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.typing-text-container {
+  height: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid black;
+  animation: blink 0.75s step-end infinite;
+  font-size: 20px;
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+.animationNum {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.animationNum::before {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: #4aa8ff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  animation: squareToCircle 5s 2s infinite alternate;
+}
+
+.animationNum span {
+  font-size: 35px;
+  color: white;
+  z-index: 1;
+}
+
+@keyframes squareToCircle {
+  0% {
+    border-radius: 0 50% 50% 50%;
+    background: #4aa8ff;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 50% 0 50% 50%;
+    background: #0a82f3;
+    transform: rotate(45deg);
+  }
+  50% {
+    border-radius: 50% 50% 0 50%;
+    background: #4aa8ff;
+    transform: rotate(90deg);
+  }
+  75% {
+    border-radius: 50% 50% 50% 0;
+    background: #0154a2;
+    transform: rotate(135deg);
+  }
+  100% {
+    border-radius: 50%;
+    background: #002241;
+    transform: rotate(180deg);
+  }
+}
+
+.fourthContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.fourthLeftBox {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bgBox {
+  width: 70%;
+  height: 90%;
+  background: conic-gradient(at 50% 25%, #0000 75%, #ffffff 0),
+    conic-gradient(at 50% 25%, #0000 75%, #ffffff 0) 23px 23px,
+    conic-gradient(at 50% 25%, #0000 75%, #ffffff 0) calc(2 * 23px)
+      calc(2 * 23px),
+    conic-gradient(at 50% 25%, #0000 75%, #ffffff 0) calc(3 * 23px)
+      calc(3 * 23px),
+    repeating-linear-gradient(135deg, #0076e3 0 12.5%, #4aa8ff 0 25%);
+  background-size: calc(4 * 23px) calc(4 * 23px);
+  border-radius: 20px 50px;
+  margin-top: 30px;
+}
+
+.fourthRightBox {
+  width: 60%;
+  padding: 20px;
+}
+
+.fourthRightBox h3 {
+  font-size: 40px;
+}
+
+.fourthRightBox h5 {
+  font-size: 20px;
+}
+
+.boldTxt {
+  font-weight: bold;
+  color: #4aa8ff;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .TopDiv h1 {
+    font-size: 60px;
+  }
+
+  .TopDiv p {
+    font-size: 24px;
+  }
+
+  .helpRowTitle h2 {
+    font-size: 40px;
+  }
+
+  .helpColumn h4 {
+    font-size: 24px;
+  }
+
+  .helpColumn p {
+    font-size: 14px;
+  }
+
+  .animationNum {
+    width: 80px;
+    height: 80px;
+  }
+
+  .animationNum span {
+    font-size: 28px;
+  }
+
+  .fourthRightBox h3 {
+    font-size: 32px;
+  }
+
+  .fourthRightBox h5 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .TopDiv {
+    padding-left: 30px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .TopDiv h1 {
+    font-size: 40px;
+  }
+
+  .TopDiv p {
+    font-size: 20px;
+  }
+
+  .helpRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .helpColumn {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .animationNum {
+    margin: 0 auto;
+  }
+
+  .fourthContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fourthLeftBox,
+  .fourthRightBox {
+    width: 90%;
+  }
+
+  .fourthRightBox h3 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .fourthRightBox h5 {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .TopDiv h1 {
+    font-size: 30px;
+  }
+
+  .TopDiv p {
+    font-size: 16px;
+  }
+
+  .helpRow {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .helpColumn h4 {
+    font-size: 20px;
+  }
+
+  .helpColumn p {
+    font-size: 12px;
+  }
+
+  .animationNum {
+    width: 60px;
+    height: 60px;
+  }
+
+  .animationNum span {
+    font-size: 24px;
+  }
+
+  .fourthRightBox h3 {
+    font-size: 24px;
+  }
+
+  .fourthRightBox h5 {
+    font-size: 14px;
+  }
+}

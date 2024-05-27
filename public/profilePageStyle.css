@@ -1,0 +1,240 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"); */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+}
+body {
+  background-color: #f8f8f8;
+}
+
+.userData {
+  display: flex;
+  align-items: center;
+}
+
+.userLevel {
+  /* font-weight: bold; */
+  margin-right: 10px;
+}
+
+.fullName {
+  margin: 0;
+}
+
+.fullNameLink {
+  text-decoration: none;
+  color: #333;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  /* background-color: #d0d0d096; */
+  height: 200px;
+  border-bottom: 2px solid rgb(117, 117, 117);
+}
+.userProfileImageBox {
+  margin-left: 130px;
+  width: 20%;
+}
+
+.profileImg {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.userDataBox {
+  width: 80%;
+}
+.userDataBox p {
+  padding-bottom: 10px;
+}
+.userDataBox h2 {
+  padding-bottom: 10px;
+}
+.dataName {
+  color: #4aa8ff;
+}
+.editButton {
+  cursor: pointer;
+  color: #4aa8ff;
+  font-size: 20px;
+  text-decoration: none;
+}
+.editButton:hover {
+  color: #146ec3;
+}
+.historyContainer {
+  display: flex;
+  flex-direction: column;
+}
+.historyTxtBox {
+  margin-left: 130px;
+  padding-top: 10px;
+  background-color: #ebebeb;
+  width: 5%;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 6px solid #039e00;
+}
+.historyBox {
+  margin-left: 130px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #e2e2e2;
+  height: 80px;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+.adminEditButton {
+  cursor: pointer;
+  color: white;
+  margin-left: 12px;
+  font-size: 15px;
+  background-color: #000000;
+  padding: 7px;
+  border-radius: 20px;
+  background-color: rgb(235, 5, 5);
+  text-decoration: none;
+}
+
+.adminEditButton:hover {
+  background-color: rgb(205, 0, 0);
+}
+
+/* ######table####### */
+
+.table_component {
+  overflow: auto;
+  width: 100%;
+}
+
+.table_component table {
+  border: 1px solid #dededf;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 1px;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.table_component caption {
+  caption-side: top;
+  text-align: left;
+}
+
+.table_component th {
+  border: 1px solid #dededf;
+  background-color: #006bb3;
+  height: 42px;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.table_component .thList {
+  border: 1px solid #dededf;
+  background-color: #c2c2c2;
+  height: 42px;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.table_component td {
+  border: 1px solid #dededf;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 25px;
+}
+
+.tablesContainer {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.tableTittle {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.checkbox-wrapper-39 *,
+.checkbox-wrapper-39 *::before,
+.checkbox-wrapper-39 *::after {
+  box-sizing: border-box;
+}
+
+.checkbox-wrapper-39 label {
+  display: block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.checkbox-wrapper-39 input {
+  visibility: hidden;
+  display: none;
+}
+
+.checkbox-wrapper-39 input:checked ~ .checkbox {
+  transform: rotate(45deg);
+  width: 14px;
+  margin-left: 12px;
+  border-color: #24c78e;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-radius: 0;
+}
+
+.checkbox-wrapper-39 .checkbox {
+  display: block;
+  width: inherit;
+  height: inherit;
+  border: 3px solid #434343;
+  border-radius: 6px;
+  transition: all 0.375s;
+}
+
+.progressCompleted {
+  background-color: rgba(55, 255, 55, 0.57);
+  padding: 10px;
+  border-radius: 20px;
+  color: #333;
+}
+
+.completedDot {
+  color: rgba(13, 188, 13, 0.57);
+  margin-right: 10px;
+}
+
+.progressInProgress {
+  background-color: rgba(55, 178, 255, 0.57);
+  padding: 10px;
+  border-radius: 20px;
+  color: #333;
+}
+
+.InProgressDot {
+  color: rgba(15, 134, 208, 0.57);
+  margin-right: 10px;
+}
+
+.thListProgressCompleted {
+  background-color: rgba(80, 217, 80, 0.57);
+  padding: 10px;
+  border-radius: 20px;
+  color: #ffffff;
+}
+.thListProgressInProgress {
+  background-color: rgba(55, 178, 255, 0.57);
+  padding: 10px;
+  border-radius: 20px;
+  color: #ffffff;
+}

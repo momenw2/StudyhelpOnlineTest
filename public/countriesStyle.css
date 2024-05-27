@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nova+Square&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(
+    180deg,
+    rgba(230, 243, 255, 1) 35%,
+    rgba(216, 249, 231, 1) 98%
+  );
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  color: #4aa8ff;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: center; /* Center the cards horizontally */
+  margin: 90px;
+}
+
+.cardBox {
+  margin: 10px; /* Adjust as needed for spacing between cards */
+}
+
+.cardsContainer a {
+  text-decoration: none;
+  color: black;
+}
+
+.card-bg {
+  width: 160px;
+  height: 160px;
+  /* background-color: red; */
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+.bg-image {
+  width: 160px;
+  height: 160px;
+  margin-top: 30px;
+}
+
+.card {
+  background-color: #a1a1a1b5;
+  width: 260px;
+  height: 360px;
+  /* border: 1px solid #4aa8ff; */
+  border-radius: 20px;
+}
+
+.cardtxt {
+  padding-left: 20px;
+}
+
+.cardtxt h4 {
+  font-size: 17px;
+}
+
+.card:hover {
+  color: rgb(255, 255, 255, 80%);
+  background-color: #143655;
+  border: none;
+}
+
+.cardBox:hover {
+  /* box-shadow: 10px 5px 5px #4aa7ff6f; */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 20px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .cardsContainer {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .cardBox {
+    width: 80%;
+  }
+
+  .card {
+    width: 90%; /* Adjust the width to fit the screen */
+    margin: 10px 0; /* Add margin for spacing between cards */
+  }
+
+  .card-bg,
+  .bg-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .cardtxt {
+    padding-left: 10px;
+  }
+
+  .cardtxt h4 {
+    font-size: 20px;
+  }
+
+  .cardtxt p {
+    font-size: 18px;
+  }
+}
